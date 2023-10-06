@@ -7,6 +7,9 @@ let p = 0;
 let open = 0;
 let do_closing = 0;
 let muted = 0;
+let carPositionX = 0; // Initial car position along the X-axis
+const carSpeed = 0.02; // Adjust the speed as needed
+let car = null;
 /////////////////////////////////
 
  
@@ -96,11 +99,11 @@ rtscene.add(amblight);
 
 let loader2 = new GLTFLoader();
 loader2.load('./cyberpunk_car/scene.gltf', function (gltf) {
-    var car = gltf.scene.children[0];
+    car = gltf.scene.children[0];
     car.castShadow = false;
     car.scale.set(0.01, 0.01, 0.01);
     car.position.set(0, 1.5, -2.5);
-    // car.rotation.z = -Math.PI;
+    //car.rotation.z = -Math.PI;
     rtscene.add(gltf.scene);
 });
 
@@ -332,6 +335,56 @@ domEvents1.addEventListener(close_btn, 'click', event => {
 
 ///////////////////////////////////////////////////////////////
 
+
+
+// Add event listener for arrow key presses
+document.addEventListener('keydown', (event) => {
+    switch (event.key) {
+        case 'ArrowLeft':
+            moveCarLeft();
+            break;
+        case 'ArrowRight':
+            moveCarRight();
+            break;
+        default:
+            // Ignore other keys
+            break;
+    }
+});
+
+// Function to move the car to the left
+function moveCarLeft() {
+    carPositionX -= carSpeed;
+    updateCarPosition();
+    // Rotate the car to the left (change the angle)
+    if (car) {
+        car.rotation.z += 0.005; // Adjust the rotation angle as needed
+    }
+}
+
+// Function to move the car to the right
+function moveCarRight() {
+    carPositionX += carSpeed;
+    updateCarPosition();
+    // Rotate the car to the right (change the angle)
+    if (car) {
+        car.rotation.z -= 0.005; // Adjust the rotation angle as needed
+    }
+}
+
+
+// Function to update the car's position
+function updateCarPosition() {
+    if (carPositionX > 1) {
+        carPositionX = 1; // Limit car's right movement
+    } else if (carPositionX < -1) {
+        carPositionX = -1; // Limit car's left movement
+    }
+    // Update the car's position
+    if (car) {
+        car.position.setX(carPositionX);
+    }
+}
 
 
 // ------------ Main Render Function ----------- ////////
