@@ -1,0 +1,19 @@
+{
+  "name": "cg_project.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "asset.js",
+  "scripts": {
+    "start": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fattaa7/CG_Project.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fattaa7/CG_Project.github.io/issues"
+  },
+  "homepage": "https://github.com/Fattaa7/CG_Project.github.io#readme"
+}

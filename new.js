@@ -44,8 +44,8 @@ rtscene.fog = new THREE.Fog(rtscene.background, 30, 60);
 
 // ----------- Grid, Terrain and Road Init in TV Scene -------- // 
 
-const plane = new THREE.Mesh(planeGeom, planeMat);
-rtscene.add(plane);
+//const plane = new THREE.Mesh(planeGeom, planeMat);
+//rtscene.add(plane);
 
 ///////////////////////////////////////////////////////////////////
 
